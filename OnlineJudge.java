@@ -13,6 +13,60 @@ import java.util.Map;
 public class OnlineJudge {
 
 	/*
+	 * Q. Linked List Cycle
+	 *
+	 * Given a linked list, determine if it has cycle in it
+	 * Can you solve it without using extra space.
+	 *
+	 * MyNotes:
+	 * I don't think my solution uses extra space other than 
+	 * the two pointers.
+	 *
+	 */
+		
+
+	/**
+ 	 * Definition for singly-linked list.
+ 	 * class ListNode {
+ 	 *     int val;
+ 	 *     ListNode next;
+ 	 *     ListNode(int x) {
+ 	 *         val = x;
+ 	 *         next = null;
+     *     }
+ 	 * }
+ 	 */
+	
+    public boolean hasCycle(ListNode head) {
+        	ListNode slowptr = head;
+	       	ListNode fastptr = head;
+
+	        while (fastptr != null) {
+                fastptr = fastptr.next;
+	       		
+	       		if(fastptr == slowptr)
+	       			return true;
+	       	
+	       	
+	       		if (fastptr != null) {
+	       		    fastptr = fastptr.next;
+	       		}
+	       		
+	       		if(slowptr != null)
+	       		    slowptr = slowptr.next;
+
+        
+	       			
+	       }
+	       
+	       return false;
+    }
+	
+
+
+
+
+	/*
 	 * Q. Integer to Roman
 	 * 
 	 * 
