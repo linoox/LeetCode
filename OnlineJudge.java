@@ -192,13 +192,92 @@ public class OnlineJudge {
 	 * How about multiple spaces between two words?
 	 * Reduce them to a single space in the reversed string.
 	 * 
+	 * TODO:
+	 * 		write cleaner solution.
+	 * 		fails for - "   a   b " even though expected and actual matches
+	 * 		output - "b a"
+	 * 		expected - "b a"
+	 * 
 	 * 
 	 */	
-	public String reverseWords(String str) {
+
+	public static String reverseWords(String str) {
+	
+	     
+        if (str == null) return null;
+        
+        str = str.trim();
+        if (str.length() < 1) return "";
+        
+        
+		char[] charStr = str.toCharArray();
+		int len = charStr.length;
 		
-	return str;
+		charStr = whitespaceRemover(charStr);
+		
+		// System.out.println("before reverse:");
+		// System.out.println(charStr);
+		
+		charStr = reverser(charStr, 0, len-1);	
+		
+		
+		// System.out.println(charStr);
+		
+		int start=0,end=0;
+		
+		for (int i=0;i<len-1;i++) {
+			
+			if (charStr[i] == ' ') {
+				end=i-1;
+				//System.out.println("call to reverser: start="+start+"|end :"+end);
+				charStr = reverser(charStr,start,end);
+				start=i+1;
+				//System.out.println("reseting start to:"+end);
+			}
+		}
+			
+		charStr = reverser(charStr,start,end=len-1);
+		
+		//System.out.println(charStr);
+		
+		return new String(charStr);
 	}
 	
+	// reverse words helper
+	public static char[] whitespaceRemover(char[] str) {
+		
+		int i=0,j=0;
+		int len = str.length;
+		char[] strNoSpace = new char[len];
+		while( i < len) {
+			
+			if(!(str[i] == ' ' && str[i+1] == ' ')) {
+				strNoSpace[j] = str[i];
+				j++;
+			}
+			i++;
+		}
+		
+		
+		return strNoSpace;
+	}
+	
+	
+	// reverse words helper
+	public static char[] reverser(char[] str, int start, int end) {
+		
+		for(int i=start; i<= (start+end)/2;i++) {
+			char temp = str[i];
+			str[i] = str[start+end-i];
+			str[start+end-i] = temp;
+		}
+		return str;
+	}
+	// reverse words
+
+
+
+
 	/*
 	 * Q. Reverse Integer
 	 * 
