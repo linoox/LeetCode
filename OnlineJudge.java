@@ -12,6 +12,83 @@ import java.util.Map;
 
 public class OnlineJudge {
 
+
+		
+	/*
+	 * Q. Plus one 
+	 * 
+	 * Given a non-negative number represented as an array of digits, plus one to the number.
+	 * The digits are stored such that the most significant digit is at the head of the list.
+	 * 
+	 */
+	
+	public static int[] plusOne(int[] digits) {
+        int len = digits.length;
+        int i= 0;
+		while( i < len) {
+			
+			digits[len-1-i]=(digits[len-1-i]+1)%10;
+			
+			if(digits[len-1-i] != 0) break;
+			
+			i++;
+		}
+		
+		
+		if(digits[0] == 0)  {
+			//overflow
+			int[] plusOneDigits = new int[len+1];
+			plusOneDigits[0]=1;
+			for(int j=1;j<len;j++) {
+				plusOneDigits[j]=digits[j-1];
+			}
+			return plusOneDigits;
+		 } else {
+			return digits;
+		 }
+		
+    }
+
+
+
+
+	/*
+	 * Q. Triangle
+	 * 
+	 * Given a triangle, find the minimum path sum from top to bottom.
+	 * Each step you may move to adjacent numbers on the row below.
+	 *
+	 * For example, given the following triangle
+	 * [
+	 *		[2],
+	 * 	   [3,4],
+	 *	  [6,5,7],	
+	 *   [4,1,8,3]
+	 * ]
+	 * The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+	 * Bonus point if you are able to do this using only O(n) extra space, 
+	 * where n is the total number of rows in the triangle.
+	 *
+	 */
+
+	  public int minimumTotal(List<List<Integer>> triangle) {
+        
+        	int minSum = 0;
+        	int oldminSum = 0;
+        	int newminSum = 0;
+	  		for(List list: triangle) {
+	  			for(Integer i : list) {
+	  				oldminSum = minSum;
+	  				newminSum = oldminSum+i
+	  				if(newminSum < oldminSum) {
+	  					minSum = newminSum;
+	  				}
+	  			}
+	  		}
+	  }
+	
+
+
 	/*
 	 * Q. Linked List Cycle
 	 *
