@@ -1,0 +1,64 @@
+import java.util.Arrays;
+
+
+public class Solution {
+    
+    static void merge(int A[], int m, int B[], int n) {
+        
+        
+        //int i=Math.max(m,n);;
+        //int max=Math.max(m,n);
+        int max=m;
+        int i=0,j=0;
+
+        while ((j<n && i<max) ) {
+
+            System.out.println("i= "+i+ " | j= "+j);
+            if(A[i] > B[j]) {
+
+                int k=max-1;
+                while(k>=i) {
+                    System.out.println("shifting:"+A[k+1] + " = " +A[k]);    
+                    A[k+1]=A[k];
+                    k--;
+                }
+                System.out.println("Array:"+Arrays.toString(A));
+                System.out.println("setting:"+A[i] + " = " +B[j]);
+                A[i]=B[j];
+                System.out.println("Array:"+Arrays.toString(A));
+                // insertion done increase max
+                max++;
+                j++; i++;
+            } else {
+                i++;
+            }
+
+        }
+
+        System.out.println("== outside ==");
+        System.out.println("j is:"+j);
+        System.out.println("n is:"+n);
+        System.out.println("max is:"+max);
+
+        if (j < n) {
+            System.out.println("j is:"+j);
+            while(j<n){
+                System.out.println("while j is:"+j);
+                A[max]=B[j];
+                j++;
+                max++;
+            }
+        }
+
+        System.out.println(Arrays.toString(A));
+    }
+
+    public static void main(String[] args) {
+        //int[] A={1,2,5,8,10,12,25,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        //int[] B={0,4,6,15,17,18,19,20,21,22,23,24};
+        int[] A = {4,-1,-1,-1,-1,-1,-1,-1};
+        int[] B = {1,2,3,5,6};
+
+        merge(A,1,B,5);
+    }
+}
