@@ -11,8 +11,8 @@
  */
 
 
-//todo: fails for size =1,2.
-// works for example
+
+//todo - fails
 
 public class Solution {
 
@@ -20,31 +20,28 @@ public class Solution {
 		ListNode sptr = head;
 	    ListNode fptr = head;
 	    ListNode hd = head;
-	    int counter = 0;
+	    // int counter = 0;
 
-	       while (fptr != null) {
-                fptr = fptr.next;
-                counter++;
+	    if(n == 0 || (head==null)) {
+	    	return null;
+	    }
 
-                if(counter >= n){
-	       		    sptr = sptr.next;
-	       		}
+	    for (int i=0;i<n;i++) {
+	     		fptr=fptr.next;	
+	    } 
 
-	       		if (fptr != null) {
-	       		    fptr = fptr.next;
-	       		} else {
+	    if(fptr == null) {
+	    	return head.next;
+	    }
 
-	       			ListNode temp = sptr.next.next;
-	       			sptr.next.next = null;
-	       			sptr.next = temp;
-
-	       			return hd;
-	       		
-	       		}
-	       		
-	       }
+	    while(fptr.next != null) {
+	    	fptr = fptr.next;
+	    	sptr = sptr.next;
+	    }
 	       
-	       return hd;        
+	     sptr.next = sptr.next.next;
+	     return hd;
+	    
     }
 
     static class ListNode {
