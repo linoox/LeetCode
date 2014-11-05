@@ -11,10 +11,8 @@
  */
 
 
+public class Solution { 
 
-//todo - fails
-
-public class Solution {
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {
 		ListNode sptr = head;
@@ -71,7 +69,7 @@ public class Solution {
  		n4.next = n5;
  		
 
- 		ListNode ptr = removeNthFromEnd(n1,1);
+ 		ListNode ptr = removeNthFromEnd(n1,2);
 
 
  		while(ptr != null) {
