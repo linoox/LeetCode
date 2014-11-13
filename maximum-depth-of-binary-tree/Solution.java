@@ -9,6 +9,14 @@
  */
 
 public class Solution {
+
+    public static class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode(int x) { val = x; }
+    }
+
     public int maxDepth(TreeNode root) {
      	
      	if (root == null) {
@@ -19,8 +27,14 @@ public class Solution {
     }
 
 
+
+
     public static void main(String[] args) {
 		
 		// todo construct function
+        TreeNode tn1 = new TreeNode(5);
+        TreeNode tn2 = new TreeNode(7);
+        tn1.right = tn2;
+
 	}
 }
