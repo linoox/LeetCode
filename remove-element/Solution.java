@@ -1,53 +1,42 @@
 public class Solution {
 
-	//TODO:
+	// todo: doesnt look elegant :(
+	// find alternate solution
 
-	// incorrect / incomplete
-	// fails for [3,3] 3
-	public static int removeElement(int[] A, int elem) {
+    public static int removeElement (int[] nums, int target) {
+		int match = 0;
+		int swpIdx = nums.length-1;
 		
-		int len = A.length;
-		int newlen=A.length;
-		int j = len-1;
-		int i = 0;
-
-		if((A.length == 1) && (A[0] == elem)) {
-			
-			return 0;
-		}
-
-		while(i < len/2) {
+		//System.out.println("target = 1");
 		
-			if(A[i] == elem) {
-				
-				
-				// swap 
-				while(A[j] != elem) 
-					j--;
-
-					int temp = A[j];
-					A[j] = A[i];
-					A[i] = temp;
-				
-				newlen--;
-				i++;
-			} else {
-				i++;
-			}	
-
-		}
-
-		return newlen;
-
-	}
-
-
-	public static void main(String[] args) {
-		//int[] A = {1,2,3,4,2,3,2,5,6,7,2,2};
-		//int[] A = {1,2,3,4};
-		int[] A = {1};
-		int elem = 1;
-
-		System.out.println(removeElement(A,elem));
-	}
+		if (nums.length == 1 && nums[0] == target) 
+		return 0;
+		
+		
+		for (int i=0;i<swpIdx+1;i++) {
+						
+			if (nums[i] == target) {
+				match++;
+									
+				while (swpIdx > i && (nums[swpIdx] == target))  {
+						swpIdx--;
+						match++;
+				}
+											 
+				// nums[swpIdx] != target
+				int temp = nums[swpIdx];
+				nums[swpIdx] = nums[i];
+				nums[i] = temp;
+				swpIdx--;
+																	
+			if (swpIdx <= i) {
+				break;
+			}
+						
+		}			
+	}		
+		// System.out.println("matches:" + match);
+		// System.out.println("newLength:" + (nums.length-match));
+		return (nums.length-match);	
+ }
 }
