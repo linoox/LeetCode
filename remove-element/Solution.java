@@ -12,6 +12,9 @@ public class Solution {
 		if (nums.length == 1 && nums[0] == target) 
 		return 0;
 		
+
+		// test case {4,5} 5
+		// had to add 1 -> swpIdx+1
 		
 		for (int i=0;i<swpIdx+1;i++) {
 						
