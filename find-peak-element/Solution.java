@@ -2,8 +2,13 @@ public class Solution {
 
     // imp test cases: {1}, {1,2}, {3,2,1}
     // check prev versions of this code
+
+
+    // too many ifs?
+    // are these many really needed? elegant solution?
+    // this looks like band-aid fix for each case
     public static int findPeakElement(int[] num) {
-        int len = num.length;
+            int len = num.length;
         if(len == 1) {
             return 0;
         } else if (len == 2) {
@@ -21,12 +26,15 @@ public class Solution {
                 return hi;
             }
 
-            mid = lo+(hi-lo)/2;            
-
-            if(mid == 0) {
-                return mid+1;
+            mid = lo+(hi-lo)/2;   
+            
+            if (mid == 0 && num[mid] > num[mid+1]) {
+                return mid;
+            } 
+            
+            if (mid == num.length-1 && num[mid] > num[mid-1]) {
+                return mid;
             }
-
             
             if((num[mid] >= num[mid+1]) && (num[mid] >= num[mid-1])) 
                 return mid;
@@ -41,8 +49,10 @@ public class Solution {
         return mid;
     }
 
+
     public static void main(String[] args) {
-        int[] num = {3, 2, 1};
+        //int[] num = {3, 2, 1};
+        int[] num = {5,4,3,2,1};
         System.out.println(findPeakElement(num));
     }
 }
