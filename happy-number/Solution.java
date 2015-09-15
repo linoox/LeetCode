@@ -5,7 +5,8 @@ public class Solution {
 		while (n > 0) {
 			int x = n%10;
 			sum+=x*x;
-			n=n/10;
+			// n=n/10;
+			n/=10; // seems this change makes the code much faster
 			
 			if (n == 0 && sum != 1) {
 				n=sum;
