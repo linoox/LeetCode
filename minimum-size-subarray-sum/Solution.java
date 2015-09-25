@@ -6,38 +6,25 @@ public class Solution {
         if (nums.length < 1) return 0;
 
 
-        int min = Integer.MAX_VALUE;
+        int minLength = Integer.MAX_VALUE; // dont really need max val, len+1 should be ok
 
         int leftIndex=0;
         int rightIndex=0;
-
         int sum=nums[leftIndex];
 
         while (rightIndex < nums.length) {
-
             
             if (sum < s) {
-                    if (rightIndex == nums.length-1) {
-                       if ( min == Integer.MAX_VALUE) {
-                            return 0;
-                        } else {                    
-                            return min;
-                        }
-                    }
-
-                rightIndex++;                
-                sum = sum + nums[rightIndex];
+                if (rightIndex == nums.length - 1)
+                    return minLength == Integer.MAX_VALUE ? 0 : minLength;                    
+                sum += nums[++rightIndex];
             } else {         
-
-                min = Math.min(min, rightIndex-leftIndex+1);
-                sum = sum - nums[leftIndex];
-                leftIndex++;
-                
+                minLength = Math.min(minLength, rightIndex-leftIndex+1);
+                sum -= nums[leftIndex++];                                
             }
         }
         
-
-        return min;
+        return minLength;
     }
 
     public static void main(String[] args) {
