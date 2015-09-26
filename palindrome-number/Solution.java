@@ -23,6 +23,23 @@ public class Solution {
 		return true;
 	}
 
+	public boolean isPalindrome2(int x) {
+        	  long y = x;
+		  long reverse = 0;
+		  while ( y > 0) {
+			  
+			  reverse = reverse*10 + y%10;
+			  y = y/10;
+			  
+		  }
+		  
+		  if (reverse == x) {
+			  return true;
+		  } else {
+			  return false;
+		  }
+    }
+
 	public static void main(String[] args) {
 		int number = 121;
 		int number2 = Integer.MAX_VALUE;
