@@ -1,42 +1,28 @@
 public class Solution {
-
-	// todo: fails for: {2,1}
-	// AOO
-    public static int findMin(int[] num) {
-        int lo=0;
-        int hi=num.length-1;
-        int pivot=0;
-   
-
-        if(hi == lo) {
-            return num[lo];
-        }
-
-        if(num[hi] > num[lo]) {
-        	return num[lo];
-        }
-
-        while(lo < hi) {
-            
-            int mid = lo+(hi-lo)/2;
-            
-            if(mid>lo && num[mid] < num[mid-1]) {
-                pivot=mid;
-                break;
-            } else if (num[mid] < num[hi]){
-                hi=mid-1;
-            } else if (num[mid] > num[hi]) {
-                lo=mid+1;
-            }
-            return num[mid];
-            
-        }
-        //System.out.println("pivot:"+pivot);
-        return Math.min(num[0],num[pivot]);
+    public int findMin(int[] nums) {
+        int lo = 0;
+        int hi = nums.length-1;
+        
+        return findMin(nums, lo, hi);
     }
-
-    public static void main(String[] args) {
-    	int[] num = {2, 1};
-    	System.out.println(findMin(num));
+    
+    public int findMin(int[] nums, int lo, int hi) {
+        if (lo == hi)
+            return nums[lo];
+            
+        if (hi-lo == 1) {
+            return Math.min(nums[lo],nums[hi]);
+        }    
+        
+        int mid = lo + (hi-lo)/2;
+        
+        if (nums[lo] < nums[hi]) {
+            return nums[lo];
+        } else if (nums[mid] > nums[lo]) {
+            return findMin(nums, mid, hi);
+        } else {
+            return findMin(nums, lo, mid);
+        }        
+        
     }
 }
